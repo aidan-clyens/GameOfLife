@@ -2,7 +2,7 @@ from conway.game import Game
 
 
 def main():
-    game = Game([800, 600], 30)
+    game = Game([800, 600], 10)
     game.run()
     game.quit()
 
