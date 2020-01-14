@@ -32,6 +32,15 @@ class Game:
 
     def draw(self):
         self._screen.fill(BLACK)
+
+        for y in range(0, self._num_rows):
+            for x in range(0, self._num_cols):
+                if self._board[y][x] == 1:
+                    square = pygame.surface.Surface([self._grid_size, self._grid_size])
+                    square.fill(WHITE)
+
+                    self._screen.blit(square, [x * self._grid_size, y * self._grid_size])
+
         pygame.display.flip()
     
     def poll_events(self):
