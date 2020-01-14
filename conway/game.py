@@ -65,6 +65,15 @@ class Game:
             for x in range(0, self._num_cols):
                 num = self.count_neighbours(x, y)
 
+                if self._board[y][x] == 1:
+                    if num < 2:
+                        self._board[y][x] = 0
+                    elif num > 3:
+                        self._board[y][x] = 0
+                else:
+                    if num == 3:
+                        self._board[y][x] = 1                
+
     def draw(self):
         self._screen.fill(BLACK)
 
