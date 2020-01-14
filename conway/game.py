@@ -1,4 +1,5 @@
 import pygame
+import random
 
 
 BLACK = pygame.color.Color(0, 0, 0)
@@ -26,9 +27,43 @@ class Game:
         for y in range(0, self._num_rows):
             board.append([])
             for x in range(0, self._num_cols):
-                board[y].append(0)
+                board[y].append(random.randint(0, 1))
 
         return board
+
+    def count_neighbours(self, x, y):
+        count = 0
+
+        if y > 0:
+            if x > 0:
+                count += self._board[y-1][x-1]
+        
+            count += self._board[y-1][x]
+
+            if x < self._num_cols - 1:
+                count += self._board[y-1][x+1]
+        
+        if y < self._num_rows - 1:
+            if x > 0:
+                count += self._board[y+1][x-1]
+            
+            count += self._board[y+1][x]
+            
+            if x < self._num_cols - 1:
+                count += self._board[y+1][x+1]
+
+        if x > 0:
+            count += self._board[y][x-1]
+        
+        if x < self._num_cols - 1:
+            count += self._board[y][x+1]
+        
+        return count
+
+    def update(self):
+        for y in range(0, self._num_rows):
+            for x in range(0, self._num_cols):
+                num = self.count_neighbours(x, y)
 
     def draw(self):
         self._screen.fill(BLACK)
@@ -51,6 +86,7 @@ class Game:
     def run(self):
         while self._running:
             self.poll_events()
+            self.update()
             self.draw()
 
             self._clock.tick(60)
