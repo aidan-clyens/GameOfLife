@@ -27,7 +27,11 @@ class Game:
         for y in range(0, self._num_rows):
             board.append([])
             for x in range(0, self._num_cols):
-                board[y].append(random.randint(0, 1))
+                val = 0
+                if random.randint(0, 15) == 0:
+                    val = 1
+
+                board[y].append(val)
 
         return board
 
