@@ -1,15 +1,15 @@
 import pygame
 
-GRID_SIZE = 30
 
 BLACK = pygame.color.Color(0, 0, 0)
 WHITE = pygame.color.Color(255, 255, 255)
 
 class Game:
-    def __init__(self, screen_size):
+    def __init__(self, screen_size, grid_size):
         pygame.init()
 
         self._screen_size = screen_size
+        self._grid_size = grid_size
 
         self._screen = pygame.display.set_mode(screen_size)
         self._clock = pygame.time.Clock()
@@ -19,13 +19,13 @@ class Game:
         self._running = True
 
     def init_board(self):
-        num_rows = int(self._screen_size[0] / GRID_SIZE) 
-        num_cols = int(self._screen_size[1] / GRID_SIZE) 
+        self._num_rows = int(self._screen_size[1] / self._grid_size) + 1
+        self._num_cols = int(self._screen_size[0] / self._grid_size) + 1
 
         board = []
-        for y in range(0, num_rows):
+        for y in range(0, self._num_rows):
             board.append([])
-            for x in range(0, num_cols):
+            for x in range(0, self._num_cols):
                 board[y].append(0)
 
         return board
