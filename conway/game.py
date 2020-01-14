@@ -1,6 +1,7 @@
 import pygame
 
 BLACK = pygame.color.Color(0, 0, 0)
+WHITE = pygame.color.Color(255, 255, 255)
 
 class Game:
     def __init__(self, screen_size):
