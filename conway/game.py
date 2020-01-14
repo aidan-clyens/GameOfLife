@@ -1,5 +1,7 @@
 import pygame
 
+GRID_SIZE = 30
+
 BLACK = pygame.color.Color(0, 0, 0)
 WHITE = pygame.color.Color(255, 255, 255)
 
@@ -12,7 +14,21 @@ class Game:
         self._screen = pygame.display.set_mode(screen_size)
         self._clock = pygame.time.Clock()
 
+        self._board = self.init_board()
+
         self._running = True
+
+    def init_board(self):
+        num_rows = int(self._screen_size[0] / GRID_SIZE) 
+        num_cols = int(self._screen_size[1] / GRID_SIZE) 
+
+        board = []
+        for y in range(0, num_rows):
+            board.append([])
+            for x in range(0, num_cols):
+                board[y].append(0)
+
+        return board
 
     def draw(self):
         self._screen.fill(BLACK)
